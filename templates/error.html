@@ -1,0 +1,11 @@
+
+
+
+{% block main %}
+<div style="position: absolute;top: 13%;left: 25%;">
+        <img style="width:200px;height:100"
+         src="{{ url_for('static',filename="images/error.png") }}" alt="">
+        <h1 style="position: absolute;top: 80%;left: 8%;">Oops</h1>
+        <h3 style="position: absolute;top: 130%;left: 8%;">{{error}}</h3>
+</div>
+{% endblock %}

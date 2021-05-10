@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}" xmlns="http://www.w3.org/1999/html">
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block title %}回答{% endblock %}
+
+{% block main %}
+<div>
+    <img class="side-question-avatar" style="width:40px;height:40px;position: absolute;top: 13%;left: 25%;"
+         src="{{ url_for('static',filename="images/user1.jpg") }}" alt="">
+    <h3 class="page-title"><strong>{{ question[2] }}</strong></h3>
+</div>
+<p style="text-align: right">
+    <span>发布时间：{{ question[-1] }}</span>
+</p>
+<hr>
+<p style="font-size:15px">{{ question[3] }}</p>
+<hr>
+<div>
+    <button style="color: #0084ff;background: rgba(0,132,255,.1);border-color:transparent;font-size:20px">发布你的回答:
+    </button>
+    <br>
+    <br>
+    <form action="{{ url_for('postAnswer') }}" method="post">
+        <input type="hidden" name="question_id" value="{{ question[0] }}">
+        <div style="margin: 0 auto;">
+            <div class="form-group">
+                <textarea name="content" placeholder="请输入问题内容" id="" class="form-control" rows="5"></textarea>
+            </div>
+            <div style="text-align: right" class="form-group">
+                <button class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 回答</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div style="margin: 0 auto;">
+    <h4 class="comment-group-title"> 回答（{{ Answer|length }}）：</h4>
+    <br>
+</div>
+<ul class="question-ul">
+    {% for answer in Answer %}
+    <li>
+        <form action="{{ url_for('giveLike') }}" method="post">
+            <div class="question-main">
+                <input type="hidden" name="question_id" value="{{ question[0] }}">
+                <input type="hidden" name="answer_id" value="{{ answer[0] }}">
+                <p class="question-title">
+                    <a href="{{url_for('user',id=answer[-1])}}">{{answer[-1]}}</a>
+                    <!--{% if answer[-1] != 1  %}
+                    <button class="btn btn-primary"
+                            style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:70px;">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 关注
+                    </button>
+                    {% else %}
+                    <button class="btn btn-primary"
+                            style="float:right;color:#fff;background:#0084ff;border-radius:3px;height:30px;width:70px;border-color: transparent;">已关注
+                    </button>
+                    {% endif %}
+                    -->
+                </p>
+                <p class="question-content" style="font-size: 15px">{{ answer[3]}}</p>
+                <br>
+                <div style="text-align:right;font-size:5px">
+                    <button class="btn btn-primary" style="color:#0084ff;background: rgba(0,132,255,.1);border-color: transparent;border-radius: 3px">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 赞同:{{ answer[-2] }}
+                    </button>
+                     <a href="{{ url_for('comment',id=answer[0]) }}">
+                        <span class="btn btn-primary" style="color:#8590a6;background: none;border-color:transparent;border-radius: 3px">
+                            <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> {{ answer[-3] }}条评论
+                        </span>
+                     </a>
+                </div>
+            </div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+    <script type="text/javascript" src="../static/sha256.js"></script>
+    <script>
+        function register() {
+            var regform = document.getElementById("regform");
+            if (regform.password.value !=  regform.password2.value){
+                alert("确认密码与密码不符合，请重新输入");
+            }
+            else{
+                regform.password.value = sha256_digest(regform.password.value);	# 提交之前把password的值hash，这样子后端数据库中的password就是经过hash的密码
+                regform.submit();
+            }
+        }
+    </script
+{% endblock %}

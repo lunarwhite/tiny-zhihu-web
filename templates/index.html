@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+{% block title %}
+首页
+{% endblock %}
+
+{% block main %}
+
+
+{% if username == 'admin'  %}
+<ul class="question-ul">
+    {% for question in questions %}
+    <li>
+        <form action="{{ url_for('adminDelete') }}" method="post">
+            <input type="hidden" name="question_id" value="{{ question[0] }}">
+            <input type="hidden" name="flag" value="{{ question[-1] }}">
+            <div class="side-question">
+                <img class="side-question-avatar" src="{{ url_for('static',filename="images/user.png") }}" alt="">
+            </div>
+            <div class="question-main">
+                <p class="question-title"><a href="{{ url_for('answer',id=question[0]) }}">{{ question[2] }}</a>
+                    <button class="btn btn-primary"
+                                style="float:right;color: #fff;background-color: #8590a6;border-color: #8590a6;border-radius: 3px;height:30px;width:70px;">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除
+                    </button>
+                </p>
+                <br>
+                <p class="question-content" style="font-size:13px">{{ question[3] }}</p>
+                <p class="question-detail">
+                    <span class="question-time">{{ question[4] }}</span>
+                </p>
+            </div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<ul class="question-ul">
+    {% for question in questions %}
+    <li>
+        <form action="{{ url_for('giveCollection') }}" method="post">
+            <input type="hidden" name="question_id" value="{{ question[0] }}">
+            <input type="hidden" name="flag" value="{{ question[-1] }}">
+            <div class="side-question">
+                <img class="side-question-avatar" src="{{ url_for('static',filename="images/user.png") }}" alt="">
+            </div>
+            <div class="question-main">
+                <p class="question-title"><a href="{{ url_for('answer',id=question[0]) }}">{{ question[2] }}</a>
+                    {% if question[-1] != 1  %}
+                    <button class="btn btn-primary"
+                                style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:70px;">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 收藏
+                    </button>
+                    {% else %}
+                    <button class="btn btn-primary"
+                                style="float:right;color:#fff;background:#0084ff;border-radius:3px;height:30px;width:70px;border-color: transparent;">已收藏
+                    </button>
+                    {% endif %}
+                </p>
+                <br>
+                <p class="question-content" style="font-size:13px">{{ question[3] }}</p>
+                <p class="question-detail">
+                    <span class="question-time">{{ question[4] }}</span>
+                </p>
+            </div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+{% endblock %}

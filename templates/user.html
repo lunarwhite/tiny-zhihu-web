@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block head %}
+<link href="{{ url_for('static',filename='css/index.css') }}" rel="stylesheet">
+{% endblock %}
+{% block title %}
+首页
+{% endblock %}
+
+{% block main %}
+
+<div style="height:250px;background:#999;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0px 10px 5px rgba(26,26,26,.1);
+    box-sizing: border-box;">
+    <div style="position:relative;top:50%;height:130px;background:#fff">
+        <img style="display: inline-block;overflow: hidden;vertical-align: top;background-color: #fff;border: 4px solid #fff;
+             border-radius: 8px;position:absolute;top:-74px;left:5%;width:160px;height:160px"
+             src="{{ url_for('static',filename="images/user4.png") }}" alt="">
+        <div style="font-size:25px;position:relative;top:15%;left:30%;">
+            <h3><span><strong>{{name}}</strong></span>
+            </h3>
+        </div>
+        <div style="font-size:25px;position:relative;top:30%;left:30%;color: #8590a6;">
+            <h5><span>{{sign}}</span></h5>
+        </div>
+        <div style="position:absolute;top:40%;left:84%;">
+            {% if flag == 1 %}
+            <form action="{{ url_for('changeInfo') }}" method="post">
+                <button class="btn btn-primary"
+                        style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:100px;">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改信息
+                </button>
+            </form>
+            {% else %}
+            <button class="btn btn-primary"
+                    style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:70px;">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 关注
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br>
+{% if flag == 1 %}
+<h3 class="page-title"><strong>我的收藏</strong></h3>
+{% else %}
+<h3 class="page-title"><strong>{{name}}的收藏</strong></h3>
+{% endif %}
+<ul class="question-ul" style="margin: 10px auto;">
+    {% for question in questions %}
+    <li>
+        <form action="{{ url_for('giveCollection') }}" method="post">
+            <input type="hidden" name="question_id" value="{{ question[0] }}">
+            <input type="hidden" name="flag" value="{{ question[-1] }}">
+            <div class="side-question">
+            </div>
+            <div class="question-main">
+                <p class="question-title"><a href="{{ url_for('answer',id=question[0]) }}">{{ question[2] }}</a>
+                    {% if question[-1] != 1 %}
+                    <button class="btn btn-primary"
+                            style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:70px;">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 收藏
+                    </button>
+                    {% else %}
+                    <button class="btn btn-primary"
+                            style="float:right;color:#fff;background:#0084ff;border-radius:3px;height:30px;width:70px;border-color: transparent;">
+                        已收藏
+                    </button>
+                    {% endif %}
+                </p>
+                <br>
+                <p class="question-content" style="font-size:13px">. {{ question[3] }}</p>
+                <p class="question-detail">
+                    <span class="question-time">{{ question[4] }}</span>
+                </p>
+            </div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if flag == 1 %}
+<h3 class="page-title"><strong>我的发布</strong></h3>
+{% else %}
+<h3 class="page-title"><strong>{{name}}的发布</strong></h3>
+{% endif %}
+<ul class="question-ul" style="margin: 10px auto;">
+    {% for question in myquestions %}
+    <li>
+        <form action="{{ url_for('deleteQuestion') }}" method="post">
+            <input type="hidden" name="question_id" value="{{ question[0] }}">
+            <input type="hidden" name="uid" value="{{ name }}">
+            <div class="side-question">
+            </div>
+            <div class="question-main">
+                <p class="question-title"><a href="{{ url_for('answer',id=question[0]) }}">{{ question[2] }}</a>
+                    {% if flag == 1 %}
+                    <button class="btn btn-primary"
+                            style="float:right;color: #0084ff;border-color: #0084ff;background:rgb(0,0,0,0);border-radius: 3px;height:30px;width:70px;">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除
+                    </button>
+                    {% else %}
+                    {% endif %}
+                </p>
+                <br>
+                <p class="question-content" style="font-size:13px">. {{ question[3] }}</p>
+                <p class="question-detail">
+                    <span class="question-time">{{ question[4] }}</span>
+                </p>
+            </div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

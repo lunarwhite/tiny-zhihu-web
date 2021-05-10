@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block title %}评论{% endblock %}
+
+{% block main %}
+<div class="side-question">
+    <h3 class="page-title" style=""><strong>评论栏</strong></h3>
+</div>
+<h4 class="comment-group-title"> 评论（{{ Comment|length }}）:</h4>
+<ul class="comment-group">
+    {% for comment in Comment %}
+    <li>
+        <div class="user-info">
+            <img class="avatar" src="{{ url_for('static',filename='images/user.png') }}" alt="">
+            <span class="username">{{ comment[-1] }}</span>
+            <span class="create-time">{{ comment[-2] }}</span>
+        </div>
+        <p class="comment-content">{{ comment[3] }}</p>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+<form action="{{ url_for('postComment') }}" method="post">
+    <input type="hidden" name="answer_id" value="{{ Answer[0] }}">
+    <div class="form-container">
+        <div class="form-group">
+            <input type="text" placeholder="请发布您的评论" name="content" class="form-control">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 评论</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
