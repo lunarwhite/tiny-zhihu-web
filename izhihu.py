@@ -15,6 +15,7 @@ conn = pymssql.connect(
 cur = conn.cursor()
 app = Flask(__name__)
 app.config.from_object(config)
+app.debug=True
 
 def login_required(func):
     @wraps(func)
