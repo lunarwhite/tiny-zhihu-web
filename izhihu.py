@@ -1,16 +1,20 @@
 import config
+import dbOper
+
+import pymssql
 import flask
 from flask import Flask
-import pymssql
-from SQL import *
 from functools import wraps
 
-conn = pymssql.connect(host='127.0.0.1:50470',
-                       user='sa', password='xx72', database='izhihu')
+conn = pymssql.connect(
+    host='127.0.0.1:50470',
+    user='sa', 
+    password='xx72', 
+    database='izhihu'
+)
 cur = conn.cursor()
 app = Flask(__name__)
 app.config.from_object(config)
-
 
 def login_required(func):
     @wraps(func)
@@ -24,7 +28,6 @@ def login_required(func):
 def cutConnet():
     cur.close()
     conn.close()
-
 
 @app.route('/')
 def index():
@@ -43,7 +46,6 @@ def index():
     }
     return flask.render_template('index.html', **context)
 
-
 @app.route('/question/', methods=['GET', 'POST'])
 @login_required
 def question():
@@ -56,7 +58,6 @@ def question():
         insertQuestion(cur, user_id, title, content)
         conn.commit()
         return flask.redirect(flask.url_for('index'))
-
 
 @app.route('/answer/<id>/')
 def answer(id):
@@ -71,7 +72,6 @@ def answer(id):
         'Answer': Answer
     }
     return flask.render_template('answer.html', **context)
-
 
 @app.route('/user/<id>/')
 def user(id):
@@ -102,7 +102,6 @@ def user(id):
     }
     return flask.render_template('user.html',**context)
 
-
 @app.route('/comment/<id>/')
 def comment(id):
     Answer = selectAnswerOfAID(cur, id)
@@ -117,7 +116,6 @@ def comment(id):
     }
     return flask.render_template('comment.html', **context)
 
-
 @app.route('/answer/', methods=['POST'])
 @login_required
 def postAnswer():
@@ -128,7 +126,6 @@ def postAnswer():
     conn.commit()
     return flask.redirect(flask.url_for('answer', id=question_id))
 
-
 @app.route('/like/', methods=['POST'])
 def giveLike():
     question_id = flask.request.form.get('question_id')
@@ -136,7 +133,6 @@ def giveLike():
     updateAnswerOfZNumber(cur, answer_id)
     conn.commit()
     return flask.redirect(flask.url_for('answer', id=question_id))
-
 
 @app.route('/Collection/', methods=['POST'])
 @login_required
@@ -180,7 +176,6 @@ def postComment():
     conn.commit()
     return flask.redirect(flask.url_for('comment', id=answer_id))
 
-
 @app.route('/search/')
 def search():
     q = flask.request.args.get('q')
@@ -206,7 +201,6 @@ def search():
     }
     return flask.render_template('index.html', **context)
 
-
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
     if flask.request.method == 'GET':
@@ -227,7 +221,6 @@ def login():
 def logout():
     flask.session.clear()
     return flask.redirect(flask.url_for('login'))
-
 
 @app.route('/regist/', methods=['GET', 'POST'])
 def regist():
@@ -253,12 +246,10 @@ def regist():
                 conn.commit()
                 return flask.redirect(flask.url_for('login'))
 
-
 @app.route('/changeInfo/', methods=['POST'])
 @login_required
 def changeInfo():
     return flask.render_template('changeInfo.html')
-
 
 @app.before_request
 def before_request():
@@ -267,7 +258,6 @@ def before_request():
     if user_id:
         flask.g.user = name
 
-
 @app.context_processor
 def context_processor():
     username = flask.session.get('name')
@@ -275,7 +265,6 @@ def context_processor():
         return {'username': username}
     else:
         return {}
-
 
 if __name__ == '__main__':
     app.run()
