@@ -1,5 +1,5 @@
 import config
-import dbOper
+from dbOper import *
 
 import pymssql
 import flask
@@ -7,9 +7,9 @@ from flask import Flask
 from functools import wraps
 
 conn = pymssql.connect(
-    host='127.0.0.1:50470',
+    host='127.0.0.1:1433',
     user='sa', 
-    password='xx72', 
+    password='*tx720618', 
     database='izhihu'
 )
 cur = conn.cursor()

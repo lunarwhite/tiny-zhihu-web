@@ -1,9 +1,9 @@
 import  os
 
 HOSTNAME = '127.0.0.1'
-PORT     = '5000'
+PORT     = '1433'
 DATABASE = 'izhihu'
-USERNAME = 'SA'
+USERNAME = 'sa'
 PASSWORD = '*tx720618'
 
 DB_URI = 'mssql+pymssql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME,PASSWORD,HOSTNAME,PORT,DATABASE)
