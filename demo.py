@@ -3,10 +3,10 @@ import datetime
 
 # 数据库连接
 conn = pymssql.connect(
-    host='127.0.0.1:50470',
-    user='sa',
-    password='xx72',
-    database='zhihuDataBase',
+    host='127.0.0.1:5000',
+    user='SA',
+    password='*tx720618',
+    database='izhihu',
     charset="UTF-8"
 )
 cur = conn.cursor()

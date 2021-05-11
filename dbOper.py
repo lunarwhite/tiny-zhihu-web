@@ -81,14 +81,11 @@ def selectAllQuestion(cur):
     data = cur.fetchall()
     return tupleToList(data)
 
-
-
 def selectALLAnswer(cur):
     SQL = 'select * from Answer_info'
     cur.execute(SQL)
     data = cur.fetchall()
     return tupleToList(data)
-
 
 def selectALLComment(cur):
     SQL = 'select * from Comment_info'
@@ -96,13 +93,11 @@ def selectALLComment(cur):
     data = cur.fetchall()
     return tupleToList(data)
 
-
 def selectAllUser(cur):
     SQL = 'select * from User_info'
     cur.execute(SQL)
     data = cur.fetchall()
     return tupleToList(data)
-
 
 def selectTextOfAnswer(cur, Q_ID):
     SQL = '''select A_text from Answer_info
@@ -111,14 +106,12 @@ def selectTextOfAnswer(cur, Q_ID):
     data = cur.fetchall()
     return tupleToList(data)
 
-
 def selectAnswerOfQID(cur, Q_ID):
     SQL = '''select * from Answer_info
              where Q_ID = (%s) '''
     cur.execute(SQL, (Q_ID))
     data = cur.fetchall()
     return tupleToList(data)
-
 
 def selectAnswerOfAID(cur, A_ID):
     SQL = '''select * from Answer_info
@@ -127,14 +120,12 @@ def selectAnswerOfAID(cur, A_ID):
     data = cur.fetchall()
     return tupleToList(data)[0]
 
-
 def selectCommentOfAID(cur, A_ID):
     SQL = '''select * from Comment_info
              where A_ID = (%d) '''
     cur.execute(SQL, (A_ID))
     data = cur.fetchall()
     return tupleToList(data)
-
 
 def selectCommentOfCID(cur, C_ID):
     SQL = '''select * from Answer_info
@@ -143,14 +134,12 @@ def selectCommentOfCID(cur, C_ID):
     data = cur.fetchall()
     return tupleToList(data)
 
-
 def selectQuestionOfQID(cur, Q_ID):
     SQL = '''select * from Question_info
              where Q_ID = (%d) '''
     cur.execute(SQL, (Q_ID))
     data = cur.fetchall()
     return tupleToList(data)[0]
-
 
 def selectAccountTologin(cur, telephone, passwd):
     sql = '''
@@ -161,7 +150,6 @@ def selectAccountTologin(cur, telephone, passwd):
     data = cur.fetchall()
     return tupleToList(data)
 
-
 def selectUserOnMobile(cur, telephone):
     sql = '''
     SELECT * FROM user_info
@@ -170,7 +158,6 @@ def selectUserOnMobile(cur, telephone):
     cur.execute(sql)
     data = cur.fetchall()
     return tupleToList(data)
-
 
 def selectUserToReg(cur, telephone):
     sql = '''
@@ -288,11 +275,3 @@ def selectuserOfdetail(cur,U_ID):
     cur.execute(SQL)
     data = cur.fetchall()
     return tupleToList(data)
-
-# conn = pymssql.connect(host='127.0.0.1:1433', user='yhc', password='111111', database='ZhiHu', charset="UTF-8")
-# cur = conn.cursor()
-
-# print(selectUserTologin(cur,18801111888,'111111'))
-# cur.close()
-# conn.commit()
-# conn.close()
