@@ -1,10 +1,11 @@
 import  os
 
 HOSTNAME = '127.0.0.1'
-PORT     = '50470'
+PORT     = '5000'
 DATABASE = 'izhihu'
 USERNAME = 'SA'
 PASSWORD = '*tx720618'
+
 DB_URI = 'mssql+pymssql://{}:{}@{}:{}/{}?charset=utf8'.format(USERNAME,PASSWORD,HOSTNAME,PORT,DATABASE)
 SQLALCHEMY_DATABASE_URI = DB_URI
 SQLALCHEMY_TRACK_MODIFICATIONS = True
