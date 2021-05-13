@@ -87,9 +87,12 @@
                 alert("确认密码与密码不符合，请重新输入");
             }
             else{
-                regform.password.value = sha256_digest(regform.password.value);	# 提交之前把password的值hash，这样子后端数据库中的password就是经过hash的密码
+                regform.password.value = sha256_digest(regform.password.value);	
+                
+                // 提交之前把password的值hash，
+                // 这样子后端数据库中的password就是经过hash的密码
                 regform.submit();
             }
         }
-    </script
+    </script>
 {% endblock %}
