@@ -60,7 +60,6 @@ def deleteCollection(cur, Q_ID, user_ID):
     '''.format(Q_ID,user_ID)
     cur.execute(sql_insert)
 
-
 def deleteQuestionOnQ_ID(cur,question_id):
     sql_insert = '''
     delete from question_info
