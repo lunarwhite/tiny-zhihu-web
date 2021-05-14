@@ -7,7 +7,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
     {% block head %}{% endblock %}
-    <title>{% block title %}{% endblock %}-知乎数据库</title>
+    <title>{% block title %}{% endblock %}-TinyZhihu</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -32,8 +32,8 @@
                 <div class="form-group">
                     <input name="q" type="text" class="form-control" placeholder="请输入关键字">
                 </div>
-                <button style="background-color:#337ab7;color:#FFFFFF" type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+                <button style="background-color:#2c7ef8;color:#FFFFFF" type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索问题
                 </button>
             </form>
             <!--<img style="width:400px;height:45px;" src="{{ url_for('static',filename='images/logo4.png') }}" alt="">-->
@@ -41,11 +41,11 @@
                 {% if username %}
                 <li><a style="color: #0084ff;background: rgba(0,132,255,.1);border-color: transparent;"
                        href="{{ url_for('user',id=0) }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  {{username}}</a></li>
-                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 注销</a></li>
+                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> 退出</a></li>
                 {% else %}
                 <li><a style="color: #0084ff;background: rgba(0,132,255,.1);border-color: transparent;"
                        href="{{ url_for('login')  }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 登录</a></li>
-                <li><a href="{{ url_for('regist') }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 注册</a></li>
+                <li><a href="{{ url_for('regist') }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 加入知乎</a></li>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->

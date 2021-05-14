@@ -2,9 +2,6 @@
     border: 1px solid #e6e6e6;
 }
 
-.main .question-ul{
-}
-
 .question-ul li{
     padding: 10px;
     overflow: hidden;
@@ -28,7 +25,7 @@
 }
 
 .question-title a{
-    color: #259;
+    color: #004cbf;
     font-size:20px;
     font-weight: 900;
 }
