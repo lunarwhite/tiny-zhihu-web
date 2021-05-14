@@ -1,9 +1,10 @@
 # tiny-zhihu-web
 SDU database S1 2021 - project assginment
+
 .
-├── config.py(√)
-├── dbOper.py(√)
-├── env(√)
+├── config.py
+├── dbOper.py
+├── env
 │   ├── bin
 │   ├── include
 │   ├── lib
@@ -12,7 +13,7 @@ SDU database S1 2021 - project assginment
 │   └── share
 ├── izhihu.ini
 ├── izhihu.py
-├── LICENSE(√)
+├── LICENSE
 ├── log
 │   ├── access.log
 │   └── error.log
@@ -27,6 +28,7 @@ SDU database S1 2021 - project assginment
 │   ├── css
 │   └── images
 ├── templates
+│   ├── about.html
 │   ├── answer.html
 │   ├── base.html
 │   ├── changeInfo.html
