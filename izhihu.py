@@ -47,6 +47,11 @@ def index():
     }
     return flask.render_template('index.html', **context)
 
+@app.route('/about/', methods=['GET', 'POST'])
+def about():
+    if flask.request.method == 'GET':
+        return flask.render_template('about.html')
+
 @app.route('/question/', methods=['GET', 'POST'])
 @login_required
 def question():

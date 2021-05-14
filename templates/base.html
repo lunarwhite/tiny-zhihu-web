@@ -7,8 +7,9 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
     {% block head %}{% endblock %}
-    <title>{% block title %}{% endblock %}-TinyZhihu</title>
+    <title>{% block title %}{% endblock %} - izhihu</title>
 </head>
+
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
@@ -27,6 +28,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">首页<span class="sr-only">(current)</span></a></li>
                 <li><a href="{{ url_for('question') }}">发布问题</a></li>
+                <li><a href="{{ url_for('about') }}">关于</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="{{ url_for('search') }}">
                 <div class="form-group">
@@ -36,7 +38,6 @@
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索问题
                 </button>
             </form>
-            <!--<img style="width:400px;height:45px;" src="{{ url_for('static',filename='images/logo4.png') }}" alt="">-->
             <ul class="nav navbar-nav navbar-right">
                 {% if username %}
                 <li><a style="color: #0084ff;background: rgba(0,132,255,.1);border-color: transparent;"
@@ -55,4 +56,5 @@
     {% block main %}{% endblock %}
 </div>
 </body>
+
 </html>
