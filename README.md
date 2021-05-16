@@ -1,6 +1,7 @@
 # tiny-zhihu-web
 SDU database S1 2021 - project assginment
 
+```
 .
 ├── config.py
 ├── dbOper.py
@@ -42,3 +43,4 @@ SDU database S1 2021 - project assginment
 └── wsgi.py
 
 12 directories, 26 files
+```
