@@ -1,7 +1,7 @@
 # tiny-zhihu-web
 仿照知乎写的web论坛系统，后端选择简易的flask+python，前端选择过时的jQuery，数据库选择SQL-Server，并部署到Ubuntu服务器上
 
-> 设计文档[在这里]()，开发文档[在这里]()
+> 设计文档[在这里](https://lunarwhite.github.io/zh/dev/2assign/fvrltijkh/)，开发文档[在这里](https://lunarwhite.github.io/zh/dev/2assign/o7m0xddlu/)
 >
 > 欢迎交流拍砖~
 
