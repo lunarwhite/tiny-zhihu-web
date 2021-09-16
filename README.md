@@ -1,7 +1,8 @@
 # tiny-zhihu-web
-仿照知乎写的web论坛系统，后端选择简易的flask+python，前端选择过时的jQuery，数据库选择SQL-Server，并部署到Ubuntu服务器上
 
-> 设计文档[在这里]()，开发文档[在这里]()
+![tiny-zhihu-web](https://socialify.git.ci/lunarwhite/tiny-zhihu-web/image?description=1&descriptionEditable=%E4%BB%BF%E7%85%A7%E7%9F%A5%E4%B9%8E%E5%86%99%E7%9A%84web%E8%AE%BA%E5%9D%9B%E7%B3%BB%E7%BB%9F%EF%BC%8C%E5%90%8E%E7%AB%AF%E9%80%89%E6%8B%A9%E7%AE%80%E6%98%93%E7%9A%84flask%2Bpython%EF%BC%8C%E5%89%8D%E7%AB%AF%E9%80%89%E6%8B%A9jQuery%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%89%E6%8B%A9SQL-Server%EF%BC%8C%E9%83%A8%E7%BD%B2%E5%88%B0Ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A&font=Raleway&forks=1&issues=1&language=1&logo=https%3A%2F%2Fflask.palletsprojects.com%2Fen%2F2.0.x%2F_images%2Fflask-logo.png&owner=1&pattern=Plus&pulls=1&stargazers=1&theme=Light)
+
+> 设计文档[在这里](https://lunarwhite.github.io/zh/dev/2assign/fvrltijkh/)，开发文档[在这里](https://lunarwhite.github.io/zh/dev/2assign/o7m0xddlu/)
 >
 > 欢迎交流拍砖~
 
