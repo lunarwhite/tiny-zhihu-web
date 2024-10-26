@@ -11,4 +11,4 @@ pymssql==2.2.1
 soupsieve==2.2.1
 urllib3==1.26.19
 uWSGI==2.0.22
-Werkzeug==3.0.3
+Werkzeug==3.0.6
